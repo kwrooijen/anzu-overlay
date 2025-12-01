@@ -42,19 +42,17 @@ The format should accept two integers: current match and total matches."
 
 (defun anzu-overlay--update (&rest _)
   "Display inline formatted search count using `anzu-overlay-format'."
-  (unless (anzu-overlay--active-p)
-    (anzu-overlay--clear)
-    (cl-return-from anzu-overlay--update))
-
   (anzu-overlay--clear)
+  (when (anzu-overlay--active-p)
+    (let* ((here  anzu--current-position)
+           (total anzu--total-matched)
+           (text  (propertize (format anzu-overlay-format here total)
+                              'face 'anzu-overlay-face))
+           (ov    (make-overlay (line-end-position)
+                                (line-end-position))))
 
-  (let* ((here  anzu--current-position)
-         (total anzu--total-matched)
-         (text  (propertize (format anzu-overlay-format here total)
-                            'face 'anzu-overlay-face))
-         (ov    (make-overlay (line-end-position) (line-end-position))))
-    (overlay-put ov 'after-string text)
-    (setq anzu-overlay--inline-overlay ov)))
+      (overlay-put ov 'after-string text)
+      (setq anzu-overlay--inline-overlay ov))))
 
 (defun anzu-overlay--post-command ()
   "Clear overlay if search is no longer active."
