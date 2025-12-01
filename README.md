@@ -1,7 +1,6 @@
 # Anzu Overlay
 
-
-[Anzu Overlay](https://raw.githubusercontent.com/kwrooijen/anzu-overlay/refs/heads/master/anzu-overlay.png)
+![Anzu Overlay](https://raw.githubusercontent.com/kwrooijen/anzu-overlay/refs/heads/master/anzu-overlay.png)
 
 
 ### Install
