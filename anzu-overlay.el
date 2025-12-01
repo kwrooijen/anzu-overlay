@@ -38,7 +38,11 @@ The format should accept two integers: current match and total matches."
 (defun anzu-overlay--active-p ()
   "Return non-nil if anzu is currently displaying a search result."
   (and (bound-and-true-p anzu--state)
-       anzu--total-matched))
+       anzu--total-matched
+       (numberp anzu--current-position)
+       (numberp anzu--total-matched)
+       (< 0 (+ anzu--current-position
+               anzu--total-matched))))
 
 (defun anzu-overlay--iedit-active-p ()
   "Return non-nil if iedit has active occurrences."
