@@ -6,7 +6,8 @@
 ### Install
 
 use-package
-```
+
+```emacs-lisp
 (use-package anzu-overlay
   :straight (anzu-overlay :type git :host github :repo "kwrooijen/anzu-overlay")
   :init
@@ -44,7 +45,7 @@ Enable Anzu Overlay mode, globally
 
 ### Customize face
 
-```
+```emacs-lisp
 (set-face-attribute 'anzu-overlay-face nil
   :background "#000000"
   :foreground "#ffffff")
