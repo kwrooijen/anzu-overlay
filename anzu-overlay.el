@@ -51,6 +51,10 @@ The format should accept two integers: current match and total matches."
        (bound-and-true-p iedit-occurrences-overlays)
        iedit-occurrences-overlays))
 
+(defun anzu-overlay--overlay-sort (a b)
+  "Sort overlay A and B."
+  (< (overlay-start a) (overlay-start b)))
+
 (defun anzu-overlay--iedit-count ()
   "Return (current . total) for iedit, or nil if unavailable."
   (when (anzu-overlay--iedit-active-p)
@@ -63,7 +67,7 @@ The format should accept two integers: current match and total matches."
                   (iedit-find-current-occurrence-overlay)))))
       (when this-oc
         (let* ((sorted (sort (append iedit-occurrences-overlays nil)
-                             #'doom-modeline-themes--overlay-sort))
+                             #'anzu-overlay--overlay-sort))
                (idx (1+ (cl-position this-oc sorted))))
           (cons idx total))))))
 
